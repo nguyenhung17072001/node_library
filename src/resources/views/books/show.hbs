@@ -1,15 +1,17 @@
 <div class="mt-4">
-    <div class="row">
-        <div class="col-lg-3">
-            <button>
-                HỌC NGAY
-            </button>
+    <div class="column">
+        {{#each book}}
+        <div>
+            <img style="height: 160px;" class="rounded float-left" src="{{this.path}}" alt="Card image cap">
+            <div class="card">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{this.name}}</h5>
+                    <p class="card-text">{{this.description}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
         </div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/0h_y3RCvz44" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div class="col-lg-9">
-            <button>
-                <h2>Chào mừng đến với trang web của Hưng</h2>
-            </button>
-        </div>
+        {{/each}}
     </div>
 </div>

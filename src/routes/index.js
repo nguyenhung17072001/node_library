@@ -1,15 +1,13 @@
-const newsRouter = require('./news')
-const siteRouter = require('./site')
-const coursesRouter = require('./course')
-const loginRouter = require('./login')
+
+const bookRouter = require('./book')
 
 function route(app) {
-    app.get('/', siteRouter); // read db
+    app.use('/', bookRouter); // read db
 
     
-    app.use('/news', newsRouter)
-    app.use('/courses', coursesRouter) // read detail
-    app.use('/login', loginRouter)
+   
+     
+
 }
 
 
