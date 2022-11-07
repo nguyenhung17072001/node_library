@@ -1,16 +1,16 @@
 <div class="mt-4">
-    <div class="column">
+    <div class="row">
+        <h1>Danh sách <a href="/book/create" class="btn btn-primary" role="button">Thêm</a></h1>
         {{#each book}}
-        <div>
-            <img style="height: 160px;" class="rounded float-left" src="{{this.path}}" alt="Card image cap">
-            <div class="card">
-
-                <div class="card-body">
-                    <h5 class="card-title">{{this.name}}</h5>
-                    <p class="card-text">{{this.description}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
+        <div class="navbar w-100 p-3 ">
+            <img src="{{this.path}}" alt="..." class="rounded img">
+            <div class="card-body">
+                <h5 class="card-title">{{this.name}}</h5>
+                <p class="card-text">{{this.type}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
+
+
         </div>
         {{/each}}
     </div>

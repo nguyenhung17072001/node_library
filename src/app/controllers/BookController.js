@@ -18,6 +18,29 @@ class CourseControllers {
 
     }
 
+    // [Get] /book/create
+    create(req, res, next) {
+        
+        res.render('books/create')
+        
+
+    }
+
+    insert(req, res, next) {
+        //res.json(req.body);
+        let formData = req.body
+        formData.path=`https://img.hung.com/${req.body._id}`
+        const book = new Book(formData)
+    
+        console.log('formData: ', formData)
+        book.save()
+        .then(()=> {
+            res.redirect('/book/list')
+        }).catch(next) 
+        
+    
+    }
+
     
 
 

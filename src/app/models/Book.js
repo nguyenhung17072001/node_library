@@ -9,8 +9,8 @@ const Book = new Schema({
     author: { type: String, required: true },
     descripttion: { type: String },
     releaseDate: { type: Date, required: true },
-    numberOfPages: { type: Number, required: true },
-    type: { type: Number, required: true },
+    numberOfPages: { type: Number},
+    type: { type: String, required: true },
     path: { type: String, maxLength: 225 },
     
     slug: { type: String, slug: 'name' , unique: true},
