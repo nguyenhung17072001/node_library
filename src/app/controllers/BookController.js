@@ -1,6 +1,7 @@
 const Book = require('../models/Book')
 const {mutipleMongooseToObject, mongooseToObject} = require('../../util/mongoose')
 
+
 class CourseControllers {
     // [Get] /book/list
     show(req, res, next) {
@@ -28,21 +29,26 @@ class CourseControllers {
 
     insert(req, res, next) {
         //res.json(req.body);
+        //console.log('file: -----===', req.file)
+        //res.send('ok')
         let formData = req.body
-        formData.path=`https://img.hung.com/${req.body._id}`
+        formData.path=`localhost:3000/book/file/${req.file.filename}`
         const book = new Book(formData)
     
-        console.log('formData: ', formData)
+        //console.log('formData: ', formData)
         book.save()
         .then(()=> {
             res.redirect('/book/list')
-        }).catch(next) 
+        }).catch(next)
         
     
     }
 
     
-
+    showFile(req, res, next) {
+        //res.render('../../public/img/1667849578015-978501570')
+        
+    }
 
 }
 
