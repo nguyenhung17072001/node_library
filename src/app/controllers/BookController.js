@@ -1,5 +1,6 @@
 const Book = require('../models/Book')
 const {mutipleMongooseToObject, mongooseToObject} = require('../../util/mongoose')
+const fs = require('fs');
 
 
 class CourseControllers {
@@ -27,28 +28,38 @@ class CourseControllers {
 
     }
 
+    // [POST] /book/insert/:slug
     insert(req, res, next) {
-        //res.json(req.body);
-        //console.log('file: -----===', req.file)
-        //res.send('ok')
+        
         let formData = req.body
         formData.path=`localhost:3000/book/file/${req.file.filename}`
         const book = new Book(formData)
     
-        //console.log('formData: ', formData)
         book.save()
         .then(()=> {
             res.redirect('/book/list')
-        }).catch(next)
+        }).catch(next) 
         
     
     }
 
-    
     showFile(req, res, next) {
-        //res.render('../../public/img/1667849578015-978501570')
+        //console.log('req: ', req.params.slug)
+        //res.send('hung 1' + req.params.slug)
+
+        let imageFile = "src/public/img/"+req.params.slug
         
+        fs.readFile(imageFile, (err, data)=> {
+            if(err) {
+                console.log('err in read file: ', err)
+                alert('Lỗi khi mở ảnh')
+            }
+            //console.log('data: ', data)
+            res.end(data)
+
+        })
     }
+
 
 }
 
