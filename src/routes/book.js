@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 router.get('/book/list', bookController.show);
 router.get('/book/create', bookController.create)
 router.post('/book/insert', upload.single('path'), bookController.insert);
-router.get('/book/file/:path', bookController.showFile)
+router.get('/book/file/:slug', bookController.showFile)
 
 
 
