@@ -1,8 +1,13 @@
 <div class="mt-4">
     <div class="row">
-        <h1>Danh sách <a href="/book/create" class="btn btn-primary" role="button">Thêm</a></h1>
-        {{#each book}}
-        <div class="navbar w-100 p-3 ">
+        <h1>Danh sách
+
+            {{#if user.admin}}
+            <a href="/book/create" class="btn btn-primary" id="add" role="button">Thêm</a>
+            {{/if}}
+        </h1>
+
+        {{!-- <div class="navbar w-100 p-3 ">
             <img src="{{this.path}}" alt="..." class="rounded img">
             <div class="card-body">
                 <h5 class="card-title">{{this.name}}</h5>
@@ -11,7 +16,44 @@
             </div>
 
 
-        </div>
-        {{/each}}
+        </div> --}}
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+
+                    <th scope="col">#</th>
+                    <th scope="col">Tiêu đề</th>
+                    <th scope="col">Tác giả</th>
+                    <th scope="col">Thể loại</th>
+                    <th scope="col">Ngày phát hành</th>
+                    <th scope="col">Số trang</th>
+                    <th scope="col">Tùy chọn</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each book}}
+                <tr>
+                    <th scope="row">{{sum @index 1}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.author}}</td>
+                    <td>{{this.type}}</td>
+                    <td>{{this.releaseDate}}</td>
+                    <td>{{this.numberOfPages}}</td>
+                    
+                    <td class="d-flex flex-row">
+                        
+                        <a href="" class="btn btn-primary" id="update" role="button">Sửa</a>
+                        <a href="" class="btn btn-primary" id="delete" role="button">Xóa</a>
+                        
+                    </td> 
+                </tr>
+                
+                {{/each}}
+            </tbody>
+
+
+        </table>
+
     </div>
 </div>
