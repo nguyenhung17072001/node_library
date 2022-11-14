@@ -22,25 +22,12 @@ class UserControllers {
         })
         .then((user)=> {
             if(user.admin==true) {
-                //res.redirect('/book/list')
-                Book.find({})
-                .then(book=> {
-                    res.render('books/show', {
-                        book: mutipleMongooseToObject(book),
-                        user: {
-                            ...mongooseToObject(user),
-                            admin: user.admin
-                        }
-                    })
-                })
-                
+                res.redirect('/book/list/admin')
             }
-            else if(user.type=='client') {
-                res.send('Trang client lam sau')
+            else if(user.admin==false) {
+                res.send('trang client lam sau')
             }
-            else {
-                alert("Tài khoản không tồn tại")
-            }
+            
         })
         .catch((err)=> {
             console.log('err: ', err)
