@@ -4,15 +4,39 @@ const fs = require('fs');
 
 
 class CourseControllers {
-    // [Get] /book/list
-    show(req, res, next) {
-        
+    site(req, res, next) {
+        //console.log('log: ', req.params.slug)
         Book.find({})
         .then(book=> {
             //res.send('list books')
-            res.render('books/show', {
-                book: mutipleMongooseToObject(book)
-            })
+            
+                res.render('books/show', {
+                    book: mutipleMongooseToObject(book)
+                })
+            //console.log('list: ', book)
+        })
+        .catch(next)
+        
+
+    }
+    // [Get] /book/list
+    show(req, res, next) {
+        //console.log('log: ', req.params.slug)
+        Book.find({})
+        .then(book=> {
+            //res.send('list books')
+            if(req.params.slug=='admin'){
+                res.render('books/show', {
+                    book: {
+                        ...mutipleMongooseToObject(book),
+                        admin: true
+                    },
+                    
+                })
+            }
+            else {
+                res.send('chua lam client')
+            }
             //console.log('list: ', book)
         })
         .catch(next)
@@ -37,7 +61,7 @@ class CourseControllers {
     
         book.save()
         .then(()=> {
-            res.redirect('/book/list')
+            res.redirect('/book/list/admin')
         }).catch(next) 
         
     
