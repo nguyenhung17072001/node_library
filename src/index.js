@@ -1,6 +1,8 @@
 const express = require('express')
 const morgan = require('morgan')
 const {engine} = require('express-handlebars')
+const methodOverride = require('method-override');
+const moment = require('moment');
 const path = require('path')
 const app = express()
 const port = 3000
@@ -19,6 +21,7 @@ app.use(express.urlencoded({
   extended: true
 }));
 app.use(express.json());
+app.use(methodOverride('_method'));
 
 //Template engine
 
@@ -27,6 +30,7 @@ app.engine('hbs', engine({
   helpers: {
     sum: (a, b)=> a+b,
     admin: (admin)=> true,
+    formatDate: (date)=> moment(date).format('DD/MM/YYYY')
   }
 }))
 app.set('view engine', 'hbs')

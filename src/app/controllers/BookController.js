@@ -84,6 +84,28 @@ class CourseControllers {
         })
     }
 
+    update(req, res, next) {
+        //console.log('req.body._id: ', req.params.slug)
+        Book.findById(req.params.slug)
+        .then((book)=> {
+            //console.log(book)
+            res.render('books/update', {
+                book: mongooseToObject(book)
+            })
+        })
+    }
+
+
+    //[PUT] /book/:id
+    store(req, res, next) {
+        //res.send('hung')
+        console.log('req.body: ', req.body)
+        Book.updateOne({_id: req.params.id}, req.body)
+        .then(()=> {
+            res.redirect('/book/list/admin')
+        })
+        .catch(next)
+    }
 
 }
 

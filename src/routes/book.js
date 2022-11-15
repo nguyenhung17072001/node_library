@@ -24,6 +24,8 @@ router.get('/book/create', bookController.create)
 router.post('/book/insert', upload.single('path'), bookController.insert);
 router.get('/book/file/:slug', bookController.showFile)
 router.get('/book/list', bookController.site);
+router.get('/book/update/:slug', bookController.update)
+router.put('/book/:id', bookController.store)
 
 
 

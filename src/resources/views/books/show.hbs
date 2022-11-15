@@ -4,6 +4,8 @@
             
             {{#if book.admin}}
             <a href="/book/create" class="btn btn-primary" id="add" role="button">Thêm</a>
+            {{else}}
+            <a href="/login" class="btn btn-primary" id="login" role="button">Đăng nhập</a>
             {{/if}}
         </h1>
 
@@ -38,12 +40,13 @@
                     <td>{{this.name}}</td>
                     <td>{{this.author}}</td>
                     <td>{{this.type}}</td>
-                    <td>{{this.releaseDate}}</td>
+                    <td>{{formatDate @this.releaseDate}}</td> 
+                    {{!-- <td>{{this.releaseDate}}</td> --}}
                     <td>{{this.numberOfPages}}</td>
                     
                     <td class="d-flex flex-row">
                         
-                        <a href="" class="btn btn-primary" id="update" role="button">Sửa</a>
+                        <a href="/book/update/{{this._id}}" class="btn btn-primary" id="update" role="button">Sửa</a>
                         <a href="" class="btn btn-primary" id="delete" role="button">Xóa</a>
                         
                     </td> 

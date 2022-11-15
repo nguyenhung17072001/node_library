@@ -1,0 +1,55 @@
+<div class="container-fluid mt-4">
+
+    <form method="POST" action="/book/{{book._id}}?_method=PUT" enctype="multipart/form-data">
+        <div class="text-form">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Tiêu đề</label>
+                    <input value="{{book.name}}" name="name" type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Tác giả</label>
+                    <input value="{{book.author}}" name="author" type="text" class="form-control" id="author">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">Mô tả về sách</label>
+                <textarea name="description" class="form-control" id="description" rows="3">{{book.description}}</textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Ngày phát hành</label>
+                    <input value="{{book.releaseDate}}" name="releaseDate" type="date" class="form-control" id="releaseDate">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Số trang</label>
+                    <input value="{{book.numberOfPages}}" name="numberOfPages" type="number" class="form-control" id="numberOfPages">
+                </div>
+            </div>
+            <div class="form-row">
+                <label for="inputPassword4">Thể loại</label>
+                <select name="type" class="form-control" aria-valuenow="{{book.type}}" id="type">
+                    
+                    <option>Truyện</option>
+                    <option>Tiểu thuyết</option>
+                    <option>Khoa học</option>
+                    <option>Toán học</option>
+                    <option>Khác</option>
+                </select>
+            </div>
+
+            
+        </div>
+
+        <div style="float: right;" class="d-flex flex-column ml-4 mt-4">
+            
+            
+                <input type="file" name="path" id="file" class="inputfile" placeholder="Upload" />
+                <img class="w-25 p-3" src="{{book.path}}" alt="Ảnh sách">
+            
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Cập nhật</button>
+    </form>
+</div> 
+
+
