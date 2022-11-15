@@ -48,11 +48,9 @@
                     <td class="d-flex flex-row">
                         
                         <a href="/book/update/{{this._id}}" class="btn btn-primary" id="update" role="button">Sửa</a>
-                        {{!-- <a href="button" class="btn btn-link" data-id="{{this._id}}" data-toggle="modal"
-                        data-target="#delete">Xóa</a> --}}
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                          Xóa
-                        </button>
+                        <a href="button" class="btn btn-link" data-id="{{this._id}}" data-toggle="modal"
+                        data-target="#delete">Xóa</a>
+                        
                         
                     </td> 
                 </tr>
@@ -68,47 +66,46 @@
 
 
 {{!-- comform --}}
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Chú ý</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Bạn có chắc muốn xóa sách này
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-        <button type="button" class="btn btn-primary">Xóa</button>
-      </div>
+<div id="delete" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc muốn xóa Item</p>
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn btn-primary">Đồng ý</a>
+                <a type="button" class="btn btn-secondary" data-dismiss="modal">Close</a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-
 
 {{!-- delete form--}}
 <form method="post" name="delete-course-form" ></form>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var bookId;
+        var courseId;
         var deleteForm = document.forms['delete-course-form']
-        var bt = document.getElementById('exampleModal')
+        var bt = document.getElementById('delete')
 
         $('#delete').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
-            bookId = button.data('id');
-            console.log('id', book)
+            courseId = button.data('id');
+            console.log('id', courseId)
         
         })
 
         
         bt.onclick = function() {
             
-            deleteForm.action = '/book/'+bookId + '?_method=DELETE';
+            deleteForm.action = '/book/delete/'+courseId + '?_method=DELETE';
             deleteForm.submit()
         }
     })
