@@ -56,7 +56,7 @@ class CourseControllers {
     insert(req, res, next) {
         
         let formData = req.body
-        formData.path=`localhost:3000/book/file/${req.file.filename}`
+        formData.path=`http://localhost:3000/book/file/${req.file.filename}`
         const book = new Book(formData)
     
         book.save()
