@@ -88,7 +88,7 @@ class CourseControllers {
         //console.log('req.body._id: ', req.params.slug)
         Book.findById(req.params.slug)
         .then((book)=> {
-            //console.log(book)
+            console.log(book)
             res.render('books/update', {
                 book: mongooseToObject(book)
             })
@@ -105,6 +105,15 @@ class CourseControllers {
             res.redirect('/book/list/admin')
         })
         .catch(next)
+    }
+
+    delete(req, res, next) {
+        Book.deleteOne({_id: req.params.id})
+            .then(()=> {
+                res.redirect('back');
+            })
+            .catch(next); 
+            //res.send('hung')
     }
 
 }
