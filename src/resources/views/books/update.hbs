@@ -6,25 +6,25 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Tiêu đề</label>
-                    <input value="{{book.name}}" name="name" type="text" class="form-control" id="name">
+                    <input required minlength="3" value="{{book.name}}" name="name" type="text" class="form-control" id="name">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Tác giả</label>
-                    <input value="{{book.author}}" name="author" type="text" class="form-control" id="author">
+                    <input required minlength="3" value="{{book.author}}" name="author" type="text" class="form-control" id="author">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAddress">Mô tả về sách</label>
-                <textarea name="description" class="form-control" id="description" rows="3">{{book.description}}</textarea>
+                <textarea required minlength="3" name="description" class="form-control" id="description" rows="3">{{book.description}}</textarea>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Ngày phát hành</label>
-                    <input value="{{book.releaseDate}}" name="releaseDate" type="date" class="form-control" id="releaseDate">
+                    <input required pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" value="{{book.releaseDate}}" name="releaseDate" type="date" class="form-control" id="releaseDate">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputPassword4">Số trang</label>
-                    <input value="{{book.numberOfPages}}" name="numberOfPages" type="number" class="form-control" id="numberOfPages">
+                    <input required pattern="[-+]?[0-9]" value="{{book.numberOfPages}}" name="numberOfPages" type="number" class="form-control" id="numberOfPages">
                 </div>
             </div>
             <div class="form-row">
@@ -45,31 +45,31 @@
         <div style="float: right;" class="d-flex flex-column ml-4 mt-4">
             
             
-                <input type="file" name="path" id="file" class="inputfile" placeholder="Upload" />
-                <img class="w-25 p-3" src="{{book.path}}" alt="Ảnh sách">
+                <input onchange="readURL(this);" type="file" name="path" id="file" class="inputfile" placeholder="Upload" />
+                <img id="blah" class="w-25 p-3" src="{{book.path}}" alt="Ảnh sách">
             
         </div>
         <button type="submit" class="btn btn-primary mt-4">Cập nhật</button>
     </form>
 </div> 
 
+<script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 
 
 
-{{!-- <div class="mt-4">
-    <h3>Sửa khóa học</h3>
-    <form class="mt-4" method="post" action="/book/store/{{book._id}}?_method=PUT">
-        <div class="form-group">
-            <label for="name">Tên khóa học</label>
-            <input type="text" class="form-control" value="{{course.name}}" id="name" name="name">
-        </div>
 
-        <div class="form-group">
-            <label for="description">Mô tả khóa học</label>
-            <textarea class="form-control"  id="description" name="description">{{course.description}}</textarea>
-        </div>
-        
-        
-        <button type="submit" class="btn btn-primary">Lưu lại</button>
-    </form>
-</div> --}}

@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const {mutipleMongooseToObject, mongooseToObject} = require('../../util/mongoose')
 const Book = require('../models/Book')
-const alert = require('alert')
+//const alert = require('alert')
 class UserControllers {
     // [Get] /login
     login(req, res, next) {
@@ -17,23 +17,25 @@ class UserControllers {
 
     //[Post] /login/auth
     auth(req, res, next) {
+        
         User.findOne({
             username: req.body.username,
             password: req.body.password,
         })
         .then((user)=> {
-            if(user.admin==true) {
-                res.redirect('/book/list/admin')
-            }
-            else if(user.admin==false) {
-                res.send('trang client lam sau')
-            }
+            //res.send('hung')
+            if(user) {
+                
+                if(user.admin==true) {
+                    res.redirect('/book/list/admin')
+                }
+                else if(user.admin==false) {
+                    res.send('trang client lam sau')
+                } 
+            } 
             
         })
-        .catch((err)=> {
-            console.log('err: ', err)
-            alert("Tài khoản không tồn tại")
-        })
+        .catch(next)
     }
 
     register(req, res, next) {
@@ -47,10 +49,10 @@ class UserControllers {
         })
         .then((user)=> {
             if(user) {
-                alert('Tồn tại tài khoản')
+                //alert('Tồn tại tài khoản')
             }
             else if(!user) {
-                alert('Có thể đăng ký')
+                //alert('Có thể đăng ký')
             }
         })
     }
