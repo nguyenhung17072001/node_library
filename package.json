@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/nguyenhung17072001/nodejs_project1#readme",
   "dependencies": {
+    "alert": "^5.1.1",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
