@@ -33,6 +33,11 @@ class UserControllers {
                     res.send('trang client lam sau')
                 } 
             } 
+            else if(!user) {
+                res.render('login', {
+                    validateUsername: 'Tài khoản không tồn tại'
+                })
+            }
             
         })
         .catch(next)
