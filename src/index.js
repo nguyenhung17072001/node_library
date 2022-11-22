@@ -30,7 +30,7 @@ app.engine('hbs', engine({
   helpers: {
     sum: (a, b)=> a+b,
     admin: (admin)=> true,
-    formatDate: (date)=> moment(date).format('DD/MM/YYYY')
+    formatDate: (d)=> moment(d).format('DD/MM/YYYY')
   }
 }))
 app.set('view engine', 'hbs')

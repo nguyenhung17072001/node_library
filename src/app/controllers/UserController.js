@@ -50,8 +50,19 @@ class UserControllers {
         .then((user)=> {
             if(user) {
                 //alert('Tồn tại tài khoản')
+                res.render('register', {
+                    validateUsername: 'Tên tài khoản đã tồn tại',
+                    validateEmail: 'Email đã tồn tại'
+                })
             }
             else if(!user) {
+                let formData=req.body;
+                formData.admin=false
+                let u = new User(formData)
+                u.save()
+                .then(()=> {
+                    res.redirect('/login')
+                })
                 //alert('Có thể đăng ký')
             }
         })
