@@ -5,9 +5,18 @@
             
             {{#if book.admin}}
             <a href="/book/create" class="btn btn-primary" id="add" role="button">Thêm</a>
+            <a href="/login" class="btn btn-primary">Đăng xuất</a>
+            
+            {{else}}
+            {{#if book.client}}
+            <a href="/login" class="btn btn-primary">Đăng xuất</a>
+            <p></p>
             {{else}}
             <a href="/login" class="btn btn-primary" id="login" role="button">Đăng nhập</a>
             {{/if}}
+            {{/if}}
+
+
         </h1>
 
         {{!-- <div class="navbar w-100 p-3 ">

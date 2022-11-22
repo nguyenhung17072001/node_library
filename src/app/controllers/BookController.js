@@ -35,7 +35,16 @@ class CourseControllers {
                 })
             }
             else {
-                res.send('chua lam client')
+                //res.send('chua lam client')
+                //console('id: ', req.params)
+                res.render('books/show', {
+                    book: {
+                        ...mutipleMongooseToObject(book),
+                        client: true,
+                        //id: req.params.slug
+                    },
+                    
+                })
             }
             //console.log('list: ', book)
         })
