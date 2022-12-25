@@ -1,0 +1,45 @@
+<div class="row">
+    <h1>Xin chào {{user.username}}
+        <a href="/login" class="btn btn-primary">Đăng xuất</a>
+    </h1>
+    
+</div>
+<table class="table table-striped table-dark">
+            <thead class="thead-dark">
+                <tr>
+
+                    <th scope="col">STT</th>
+                    <th scope="col">Tiêu đề</th>
+                    <th scope="col">Tác giả</th>
+                    <th scope="col">Thể loại</th>
+                    <th scope="col">Ngày phát hành</th>
+                    <th scope="col">Số trang</th>
+                    <th scope="col">Xem chi tiết</th>
+                    <th scope="col">Đặt mua</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {{#each book}}
+                <tr>
+                    <th scope="row">{{sum @index 1}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.author}}</td>
+                    <td>{{this.type}}</td>
+                    <td>{{formatDate @this.releaseDate}}</td> 
+                    
+                    <td>{{this.numberOfPages}}</td>
+                    
+                    <td>                        
+                        <a href="/book/update/{{this._id}}" class="btn btn-primary" id="check" role="button">Xem</a>                        
+                    </td> 
+                    <td>
+                        <a href="/book/update/{{this._id}}" class="btn btn-primary" id="buy" role="button">Đặt mua</a>
+                    </td> 
+                </tr>
+                
+                {{/each}}
+            </tbody>
+
+
+        </table>

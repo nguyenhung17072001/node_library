@@ -30,7 +30,7 @@ class UserControllers {
                     res.redirect('/book/list/admin')
                 }
                 else if(user.admin==false) {
-                    res.redirect(`/book/list/${user._id}`)
+                    res.redirect(`/book/list/client/${user._id}`)
                 } 
             } 
             else if(!user) {

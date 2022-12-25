@@ -1,6 +1,7 @@
 const Book = require('../models/Book')
 const {mutipleMongooseToObject, mongooseToObject} = require('../../util/mongoose')
 const fs = require('fs');
+const User = require('../models/User');
 
 
 class CourseControllers {
@@ -25,6 +26,7 @@ class CourseControllers {
         Book.find({})
         .then(book=> {
             //res.send('list books')
+            console.log('book: ', book)
             if(req.params.slug=='admin'){
                 res.render('books/show', {
                     book: {
@@ -51,6 +53,22 @@ class CourseControllers {
         .catch(next)
         
 
+    }
+
+    homeClient(req, res, next) {
+        User.findOne({_id: req.params.slug})
+        .then((user)=> {
+            Book.find({})
+            .then((book)=> {
+                res.render('client/home', {
+                    userId: user._id,
+                    book: mutipleMongooseToObject(book),
+                    user: mongooseToObject(user)
+                })
+            })
+            
+        })
+        .catch(next)
     }
 
     // [Get] /book/create
