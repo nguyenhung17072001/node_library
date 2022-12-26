@@ -9,6 +9,7 @@ const Evaluate = new Schema({
     userId: { type: String, required: true },
     comment: { type: String },
     rate: { type: Number, required: true },
+    username: { type: String },
     
     //createdAt: { type: Date, default: Date.now },
     //updatedAt: { type: Date, default: Date.now },
