@@ -143,6 +143,13 @@ class CourseControllers {
             //res.send('hung')
     }
 
+
+
+    //client
+    showDetail(req, res, next) {
+        res.render('client/detail')
+    }
+
 }
 
 module.exports = new CourseControllers;

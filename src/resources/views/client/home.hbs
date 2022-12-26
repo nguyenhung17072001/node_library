@@ -1,5 +1,10 @@
 <div class="row">
     <h1>Xin chào {{user.username}}
+        <script>
+            
+            localStorage.setItem("user", JSON.stringify({user}));
+            console.log('user: ', localStorage.getItem("user"))
+        </script>
         <a href="/login" class="btn btn-primary">Đăng xuất</a>
     </h1>
     
@@ -30,8 +35,12 @@
                     
                     <td>{{this.numberOfPages}}</td>
                     
-                    <td>                        
-                        <a href="/book/update/{{this._id}}" class="btn btn-primary" id="check" role="button">Xem</a>                        
+                    <td>       
+                                     
+                       
+                            
+                            <a href="/book/list/client/detail/{{this._id}}" type="submit" class="btn btn-primary">Xem</a>
+                                                
                     </td> 
                     <td>
                         <a href="/book/update/{{this._id}}" class="btn btn-primary" id="buy" role="button">Đặt mua</a>
@@ -42,4 +51,5 @@
             </tbody>
 
 
-        </table>
+</table>
+<div id="result"></div>

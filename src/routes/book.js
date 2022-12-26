@@ -27,7 +27,10 @@ router.get('/book/list', bookController.site);
 router.get('/book/list/client/:slug', bookController.homeClient);
 router.get('/book/update/:slug', bookController.update);
 router.put('/book/store/:id', upload.single('path'), bookController.store)
-router.delete('/book/delete/:id', bookController.delete)
+router.delete('/book/delete/:id', bookController.delete);
+
+
+router.get('/book/list/client/detail/:id', bookController.showDetail)
 
 
 
