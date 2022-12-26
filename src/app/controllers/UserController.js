@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const {mutipleMongooseToObject, mongooseToObject} = require('../../util/mongoose')
 const Book = require('../models/Book')
+const store = require('../Storage/Store')
 //const alert = require('alert')
 class UserControllers {
     // [Get] /login
@@ -24,15 +25,18 @@ class UserControllers {
         })
         .then((user)=> {
             //res.send('hung')
+            store.set('user', user)
             if(user) {
                 
                 if(user.admin==true) {
                     res.redirect('/book/list/admin')
                 }
                 else if(user.admin==false) {
+                    store.set('user', user) 
+                    //console.log('user: ', store.get('user'))
                     res.redirect(`/book/list/client/${user._id}`)
                 } 
-            } 
+            }  
             else if(!user) {
                 res.render('login', {
                     validateUsername: 'Tài khoản không tồn tại'

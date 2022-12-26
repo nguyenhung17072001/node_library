@@ -2,8 +2,9 @@ const Book = require('../models/Book')
 const {mutipleMongooseToObject, mongooseToObject} = require('../../util/mongoose')
 const fs = require('fs');
 const User = require('../models/User');
+const Evaluate = require('../models/Evaluate')
 
-
+const store = require('../Storage/Store')
 class CourseControllers {
     site(req, res, next) {
         //console.log('log: ', req.params.slug)
@@ -147,7 +148,27 @@ class CourseControllers {
 
     //client
     showDetail(req, res, next) {
-        res.render('client/detail')
+        Book.findOne({_id: req.params.id})
+        .then(async(book)=> {
+            let evaluate;
+            await Evaluate.find({bookId: req.params.id})
+            .then((eva)=> {
+                evaluate=eva;
+            })
+            
+            
+
+
+
+            let user = store.get('user')
+            await res.render('client/detail', {
+                user: user,
+                book: mongooseToObject(book),
+                evaluate: mutipleMongooseToObject(evaluate)
+            })
+        })
+        .catch(next)
+        
     }
 
 }
