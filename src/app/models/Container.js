@@ -4,12 +4,11 @@ mongoose.plugin(slug);
 
 const Schema = mongoose.Schema;
 
-const Evaluate = new Schema({
-    bookId: { type: String, required: true },
+const Container = new Schema({
+    quantity: { type: Number, required: true },
+    name: { type: String, required: true },
     userId: { type: String, required: true },
-    comment: { type: String, required: true },
-    rate: { type: Number },
-    username: { type: String },
+    path: { type: String },
     
     //createdAt: { type: Date, default: Date.now },
     //updatedAt: { type: Date, default: Date.now },
@@ -18,4 +17,4 @@ const Evaluate = new Schema({
     timestamps: true,
 });
 
-module.exports = mongoose.model('Evaluate', Evaluate);
+module.exports = mongoose.model('Container', Container);

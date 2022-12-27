@@ -3,6 +3,7 @@ const {mutipleMongooseToObject, mongooseToObject} = require('../../util/mongoose
 const fs = require('fs');
 const User = require('../models/User');
 const Evaluate = require('../models/Evaluate')
+const Container = require('../models/Container')
 
 const store = require('../Storage/Store')
 class CourseControllers {
@@ -169,6 +170,32 @@ class CourseControllers {
         })
         .catch(next)
         
+    }
+
+    rate(req, res, next) {
+        console.log(req.body)
+        let username= store.get('user').username;
+        let formData = req.body
+        formData.username=username;
+        let evaluate = new Evaluate(formData);
+        evaluate.save()
+        .then(()=> {
+            res.redirect('back')
+        })
+        .catch(next)
+
+
+    }
+
+    buy(req, res, next) {
+        let formData= req.body;
+
+        let order = new Container(formData);
+        order.save()
+        .then(()=> {
+            res.redirect('back');
+        })
+        .catch(next)
     }
 
 }
