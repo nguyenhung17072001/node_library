@@ -33,7 +33,8 @@ router.delete('/book/delete/:id', bookController.delete);
 router.get('/book/list/client/detail/:id', bookController.showDetail)
 router.post('/book/list/client/detail/rate', bookController.rate);
 router.post('/book/list/client/detail/buy', bookController.buy)
-
+router.get('/client/container/:id', bookController.showContainer)
+router.delete('/client/container/delete/:id', bookController.destroyContainer)
 
 
 module.exports = router;

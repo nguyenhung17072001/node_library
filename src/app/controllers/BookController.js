@@ -182,20 +182,40 @@ class CourseControllers {
         .then(()=> {
             res.redirect('back')
         })
-        .catch(next)
+        .catch(next);
 
 
     }
 
     buy(req, res, next) {
+        let user = store.get('user')
         let formData= req.body;
-
+        console.log(user._id)
         let order = new Container(formData);
         order.save()
         .then(()=> {
-            res.redirect('back');
+            res.redirect(`/book/list/client/${user._id}`)
         })
         .catch(next)
+    }
+
+    showContainer(req, res, next) {
+        Container.find({userId: req.params.id})
+        .then((container)=> {
+            if(container) {
+                res.render('client/container', {
+                    book: mutipleMongooseToObject(container)
+                })
+            }
+        })
+    }
+
+    destroyContainer(req, res, next) {
+        Container.deleteOne({_id: req.params.id})
+            .then(()=> {
+                res.redirect('back');
+            })
+            .catch(next); 
     }
 
 }

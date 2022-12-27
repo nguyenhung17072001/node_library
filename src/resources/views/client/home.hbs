@@ -1,6 +1,6 @@
 <div class="row">
     <h1>Xin chào {{user.username}}
-       
+        <a href="/client/container/{{user._id}}" class="btn btn-primary">Giỏ hàng</a>
         <a href="/login" class="btn btn-primary">Đăng xuất</a>
     </h1>
     
@@ -16,7 +16,7 @@
                     <th scope="col">Ngày phát hành</th>
                     <th scope="col">Số trang</th>
                     <th scope="col">Xem chi tiết</th>
-                    <th scope="col">Đặt mua</th>
+                    
                 </tr>
             </thead>
 
@@ -38,9 +38,7 @@
                             <a href="/book/list/client/detail/{{this._id}}" type="submit" class="btn btn-primary">Xem</a>
                                                 
                     </td> 
-                    <td>
-                        <a href="/book/update/{{this._id}}" class="btn btn-primary" id="buy" role="button">Đặt mua</a>
-                    </td> 
+                    
                 </tr>
                 
                 {{/each}}

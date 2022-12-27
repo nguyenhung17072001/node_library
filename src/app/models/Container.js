@@ -9,7 +9,7 @@ const Container = new Schema({
     name: { type: String, required: true },
     userId: { type: String, required: true },
     path: { type: String },
-    
+    bookId: { type: String, required: true }
     //createdAt: { type: Date, default: Date.now },
     //updatedAt: { type: Date, default: Date.now },
 

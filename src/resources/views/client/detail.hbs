@@ -17,19 +17,35 @@
     <div>
         <h5>Mua sách</h5>
 
-        
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Mua</button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tùy chọn</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
         <form action="/book/list/client/detail/buy" method="post">
             <input hidden value="{{user._id}}" type="text" name="userId">
             <input hidden value="{{book.name}}" type="text" name="name">
             <input hidden value="{{book.path}}" type="text" name="path">
+            <input hidden value="{{book._id}}" type="text" name="bookId">
 
             <div class="form-group">
                 <label for="exampleFormControlInput1">Số lượng</label>
                 <input name="quantity" min="0" minlength="1" required type="number" class="form-control" id="exampleFormControlInput1" placeholder="Số lượng">
             </div>
-
-            <button type="submit" class="mt-3" aria-placeholder="Mua">Mua</button>
-        </form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" aria-placeholder="Mua">Mua</button>
+    </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
     </div>
     <div style="width: 150px;"></div>
     <div>
@@ -39,6 +55,9 @@
             <div class="card-body">
                 <h6>{{this.username}}</h6>
                 <div class="rating">
+                    {{#if this.rate}}
+                    <p>{{this.rate}}/5 </p>
+                    {{/if}}
                     
                 </div>
                 <p>{{this.comment}}</p>
@@ -48,6 +67,7 @@
         {{/each}}
 
         <h6>Đánh giá của bạn: </h6>
+        
         
         <form class="d-flex flex-column " action="/book/list/client/detail/rate" method="post">
             <input hidden value="{{user._id}}" type="text" name="userId">
@@ -121,3 +141,17 @@
         color: #c59b08;
     }
 </style>
+
+
+{{!-- <form action="/book/list/client/detail/buy" method="post">
+            <input hidden value="{{user._id}}" type="text" name="userId">
+            <input hidden value="{{book.name}}" type="text" name="name">
+            <input hidden value="{{book.path}}" type="text" name="path">
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Số lượng</label>
+                <input name="quantity" min="0" minlength="1" required type="number" class="form-control" id="exampleFormControlInput1" placeholder="Số lượng">
+            </div>
+
+            <button type="submit" class="mt-3" aria-placeholder="Mua">Mua</button>
+    </form> --}}
